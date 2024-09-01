@@ -44,8 +44,7 @@ import com.example.istegelsinodev6.data.entity.Urunler
 fun Anasayfa(navController: NavController) {
     val kategorilerListesi = remember { mutableStateListOf<Kategoriler>() }
     val urunlerListesi = remember { mutableStateListOf<Urunler>() }
-    val scope = rememberCoroutineScope()
-    val snackbarHostState = remember { SnackbarHostState() }
+
 
     LaunchedEffect(key1 = true) {
         kategorilerListesi.addAll(

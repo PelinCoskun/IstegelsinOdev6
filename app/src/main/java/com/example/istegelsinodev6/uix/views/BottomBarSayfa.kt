@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -24,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -43,41 +46,48 @@ fun BottomBarSayfa(navController: NavController) {
     Scaffold(
         bottomBar = {
             Column {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Color.White)
-                        .padding(horizontal = 3.dp, vertical = 6.dp), // Reduced vertical padding
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                Card(
+                    modifier = Modifier.fillMaxWidth()
+                    .background(Color.White),
+                   // elevation = CardDefaults.cardElevation(defaultElevation = 20.dp)
                 ) {
-                    Box(
+                    Row(
                         modifier = Modifier
-                            .background(Color(0xFFE9F5F1))
-                            .height(30.dp) // Reduced height
-                            .padding(start = 8.dp, end = 10.dp)
-                            .align(Alignment.CenterVertically)
+                            .fillMaxWidth()
+                            .background(Color.White)
+                            .padding(horizontal = 3.dp, vertical = 6.dp)
+                            .height(40.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
+                        Box(
+                            modifier = Modifier
+                                .background(Color(0xFFE9F5F1))
+                                .padding(start = 8.dp, end = 10.dp)
+                                .align(Alignment.CenterVertically)
+                                .height(40.dp)
+                        ) {
+                            Text(
+                                text = "Sepete Ekle Kazan",
+                                color = Color(0xFF599F85),
+                                textAlign = TextAlign.End,
+                                style = TextStyle(fontSize = 12.sp, fontWeight = FontWeight.Bold),
+                                modifier = Modifier.align(Alignment.CenterEnd)
+                            )
+                        }
                         Text(
-                            text = "Sepete Ekle Kazan",
+                            text = "Minimum Alışveriş Tutarı\n225,00₺ kaldı",
                             color = Color(0xFF599F85),
+                            modifier = Modifier.weight(1f),
                             textAlign = TextAlign.End,
-                            style = TextStyle(fontSize = 12.sp),
-                            modifier = Modifier.align(Alignment.CenterEnd)
+                            style = TextStyle(fontSize = 12.sp, fontWeight = FontWeight.Bold)
                         )
                     }
-                    Text(
-                        text = "Minimum Alışveriş Tutarı\n225,00₺ kaldı",
-                        color = Color(0xFF599F85),
-                        modifier = Modifier.weight(1f),
-                        textAlign = TextAlign.End,
-                        style = TextStyle(fontSize = 12.sp)
-                    )
-
                 }
                 BottomAppBar(
                     containerColor = Color.White,
                     contentColor = Color.White,
+                    tonalElevation = 40.dp,
                     content = {
                         NavigationBarItem(
                             selected = secilenItem.value == 0,
@@ -105,7 +115,7 @@ fun BottomBarSayfa(navController: NavController) {
                                     painter = painterResource(id = R.drawable.altara),
                                     contentDescription = "",
                                     modifier = Modifier.size(22.dp),
-                                    tint = if (secilenItem.value == 1)selectedColor else unSelectedColor
+                                    tint = if (secilenItem.value == 1) selectedColor else unSelectedColor
                                 )
                             },
                             label = { Text(text = "arama", color = Color.Gray) }
@@ -120,9 +130,9 @@ fun BottomBarSayfa(navController: NavController) {
                                     painter = painterResource(id = R.drawable.sepet),
                                     contentDescription = "",
                                     modifier = Modifier.size(64.dp),
-                                   tint = Color.Unspecified,
+                                    tint = Color.Unspecified,
 
-                                )
+                                    )
                             },
                             label = { Text(text = "0,00₺", color = Color.Gray) }
                         )

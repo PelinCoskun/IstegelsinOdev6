@@ -34,6 +34,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -175,52 +176,61 @@ fun Anasayfa(navController: NavController) {
             }
         }
         item {
-            Column(
+            Card(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp)
-
+                    .background(Color.White),
+                colors = CardDefaults.cardColors(containerColor = Color.White),
+                elevation = CardDefaults.cardElevation(defaultElevation = 14.dp)
             ) {
-                for (i in 0 until 5) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 1.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        for (j in 0 until 4) {
-                            val index = i * 4 + j
-                            if (index < urunlerListesi.size) {
-                                val urun = urunlerListesi[index]
-                                Card(
-                                    modifier = Modifier
-                                        .padding(4.dp)
-                                        .weight(1f)
-                                        .height(150.dp),
-                                    colors = CardDefaults.cardColors(containerColor = Color.White)
-                                ) {
-                                    Column(
-                                        horizontalAlignment = Alignment.CenterHorizontally,
-                                        verticalArrangement = Arrangement.Center,
-                                        modifier = Modifier.padding(0.dp)
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                ) {
+                    for (i in 0 until 5) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 1.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            for (j in 0 until 4) {
+                                val index = i * 4 + j
+                                if (index < urunlerListesi.size) {
+                                    val urun = urunlerListesi[index]
+                                    Card(
+                                        modifier = Modifier
+                                            .padding(4.dp)
+                                            .weight(1f)
+                                            .height(150.dp),
+                                        colors = CardDefaults.cardColors(containerColor = Color.White)
                                     ) {
-                                        val activity = (LocalContext.current as Activity)
-                                        Image(
-                                            bitmap = ImageBitmap.imageResource(
-                                                id = activity.resources.getIdentifier(
-                                                    urun.resim,
-                                                    "drawable",
-                                                    activity.packageName
-                                                )
-                                            ),
-                                            contentDescription = "",
-                                            modifier = Modifier.size(90.dp, 90.dp)
-                                        )
-                                        Text(
-                                            text = urun.ad,
-                                            modifier = Modifier.padding(top = 1.dp),
-                                            fontSize = 12.sp
-                                        )
+                                        Column(
+                                            horizontalAlignment = Alignment.CenterHorizontally,
+                                            verticalArrangement = Arrangement.Center,
+                                            modifier = Modifier.padding(0.dp)
+                                        ) {
+                                            val activity = (LocalContext.current as Activity)
+                                            Image(
+                                                bitmap = ImageBitmap.imageResource(
+                                                    id = activity.resources.getIdentifier(
+                                                        urun.resim,
+                                                        "drawable",
+                                                        activity.packageName
+                                                    )
+                                                ),
+                                                contentDescription = "",
+                                                modifier = Modifier.size(90.dp, 90.dp)
+                                            )
+                                            Text(
+                                                text = urun.ad,
+                                                modifier = Modifier.padding(top = 1.dp),
+                                                fontSize = 12.sp,
+                                                color = Color.Black
+                                            )
+                                        }
                                     }
                                 }
                             }
@@ -229,6 +239,7 @@ fun Anasayfa(navController: NavController) {
                 }
             }
         }
+
     }
     }
 

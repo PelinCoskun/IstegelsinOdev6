@@ -85,6 +85,7 @@ fun BottomBarSayfa(navController: NavController) {
                     }
                 }
                 BottomAppBar(
+                    modifier = Modifier.height(80.dp),
                     containerColor = Color.White,
                     contentColor = Color.White,
                     tonalElevation = 40.dp,
